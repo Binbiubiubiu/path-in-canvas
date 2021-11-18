@@ -1,6 +1,6 @@
 {
   "name": "path-in-canvas",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "use path's data in the canvas",
   "files": [
     "dist"

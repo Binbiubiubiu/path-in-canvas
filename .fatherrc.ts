@@ -1,6 +1,6 @@
 
 export default {
   esm:"rollup",
-  umd: {minFile:false}
+  umd: true
 //   cjs: "rollup"
 };

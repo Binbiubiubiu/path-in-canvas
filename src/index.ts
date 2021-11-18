@@ -21,7 +21,7 @@ const debug = (...args: unknown[]) => {
  * @param a 
  * @returns 
  */
-export const validateAction = (a: string) => {
+export const validatePathAction = (a: string) => {
   if (!ACTION.includes(a)) {
     throw new Error(`unknown action: ${a}`);
   }
@@ -33,11 +33,11 @@ export const validateAction = (a: string) => {
  * @param path 
  * @returns 
  */
-export const parseSteps = (path:string)=>{
-  const actions = path.match(ACTION_REGEXP);
-  debug("parsed actions", actions);
-  const steps = actions.map(item => {
-    const action = validateAction(item[0]);
+export const parsePathActions = (path:string)=>{
+  const steps = path.match(ACTION_REGEXP);
+  debug("parsed steps", steps);
+  const actions = steps.map(item => {
+    const action = validatePathAction(item[0]);
     return {
       action,
       num: item
@@ -47,8 +47,8 @@ export const parseSteps = (path:string)=>{
         .map(Number)
     };
   });
-  debug("parsed steps", steps);
-  return steps;
+  debug("parsed actions", actions);
+  return actions;
 }
 
 const DEFAULT_OPTION = {
@@ -61,19 +61,19 @@ const DEFAULT_OPTION = {
  * @param path 
  * @param ops 
  */
-export default function(
+export function drawPath(
   ctx: CanvasRenderingContext2D,
   path: string,
   ops = DEFAULT_OPTION
 ) {
   debugFlag = ops.debug;
-  let steps = parseSteps(path);
+  let actions = parsePathActions(path);
 
   ctx.beginPath();
   let lastPoint = [0, 0];
-  for (let i = 0; i < steps.length; i++) {
+  for (let i = 0; i < actions.length; i++) {
     const [la, lb] = lastPoint;
-    const { action, num } = steps[i];
+    const { action, num } = actions[i];
     const [a, b, c, d, e, f] = num;
     switch (action) {
       case "M":
