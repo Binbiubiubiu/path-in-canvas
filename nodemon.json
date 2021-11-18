@@ -1,0 +1,6 @@
+{
+    "verbose": false,
+    "ignore": ["tests/*", "dist/*"],
+    "watch": ["src/"],
+    "ext": "js,ts"
+  }
