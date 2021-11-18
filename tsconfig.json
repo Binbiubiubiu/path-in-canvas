@@ -4,5 +4,6 @@
       "moduleResolution": "node",
       "jsx": "preserve",
       "esModuleInterop": true
-    }
+    },
+    "include": ["src"]
   }
