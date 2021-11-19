@@ -33,11 +33,13 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - name: cache node_modules
-        uses: actions/cache@v2
+      - uses: actions/cache@v2
+        id: cache
         with:
-          path: node_modules
-          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - run: npm ci
       - run: npm build
       - run: npm publish
