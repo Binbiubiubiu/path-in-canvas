@@ -23,7 +23,7 @@
     "build": "father-build",
     "test": "jest",
     "release:preview": "np --no-publish --preview",
-    "release": "np --no-publish"
+    "release": "np --no-publish --no-yarn"
   },
   "keywords": [
     "svg",
