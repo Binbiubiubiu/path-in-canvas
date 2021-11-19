@@ -22,7 +22,8 @@
     "dev": "nodemon --exec \"father build\"",
     "build": "father build",
     "test": "jest",
-    "release":"np --no-publish --preview "
+    "release:preview":"np --no-publish --preview",
+    "release":"np --no-publish"
   },
   "keywords": [
     "svg",
