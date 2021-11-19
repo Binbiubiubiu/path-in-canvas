@@ -1,6 +1,6 @@
 const ACTION = "MLHVCSQTZ";
 const ACTION_REGEXP = new RegExp(
-  `[${ACTION}](\\s*\\-?\\d+(\.\\d)?\\s*)*`,
+  `[${ACTION}]([\\s,]*\\-?\\d+(\.\\d)?[\\s,]*)*`,
   "g"
 );
 
@@ -42,7 +42,7 @@ export const parsePathActions = (path:string)=>{
       action,
       num: item
         .slice(1)
-        .split(" ")
+        .split(/[\s,]/)
         .filter(Boolean)
         .map(Number)
     };

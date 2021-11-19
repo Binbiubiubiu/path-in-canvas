@@ -38,4 +38,37 @@ test("parseSteps", () => {
   expect(parsePathActions(d)).toEqual([
     { action: "T", num: [151, 334] }
   ]);
+
+  d = "Z";
+  expect(parsePathActions(d)).toEqual([
+    { action: "Z", num: [] }
+  ]);
+
+
+  d = "M153.2323,334,";
+  expect(parsePathActions(d)).toEqual([{ action: "M", num: [153.2323, 334] }]);
+  d = "L153.2323,334,";
+  expect(parsePathActions(d)).toEqual([{ action: "L", num: [153.2323, 334] }]);
+  d = "V153.2323,";
+  expect(parsePathActions(d)).toEqual([{ action: "V", num: [153.2323] }]);
+  d = "H334,";
+  expect(parsePathActions(d)).toEqual([{ action: "H", num: [334] }]);
+  d = "C153.1,334.23,151,334,151,334,";
+  expect(parsePathActions(d)).toEqual([
+    { action: "C", num: [153.1, 334.23, 151, 334, 151, 334] }
+  ]);
+  d = "S151,334,151,334,";
+  expect(parsePathActions(d)).toEqual([
+    { action: "S", num: [151, 334, 151, 334] }
+  ]);
+
+  d = "Q151,334,151,334,";
+  expect(parsePathActions(d)).toEqual([
+    { action: "Q", num: [151, 334, 151, 334] }
+  ]);
+
+  d = "T151,334,";
+  expect(parsePathActions(d)).toEqual([
+    { action: "T", num: [151, 334] }
+  ]);
 });
