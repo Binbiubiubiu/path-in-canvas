@@ -10,20 +10,20 @@ on:
       - 'v*'
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 12
-      - name: cache node_modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - run: npm ci
-      - run: npm test
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: 12
+  #     - name: cache node_modules
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: node_modules
+  #         key: node_modules-${{ hashFiles('**/package-lock.json') }}
+  #     - run: npm ci
+  #     - run: npm test
 
   publish-npm:
     needs: build
@@ -40,6 +40,7 @@ jobs:
           path: node_modules
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
       - run: npm ci
+      - run: npm build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
