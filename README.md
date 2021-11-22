@@ -21,7 +21,7 @@ ctx.bezierCurveTo(153,334,151,334,151,334)
 - A = elliptical Arc
 - Z = closepath
 
-# Usage
+## Usage
 
 ``` shell
 npm install path-in-canvas
