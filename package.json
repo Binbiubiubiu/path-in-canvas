@@ -19,7 +19,7 @@
     }
   },
   "scripts": {
-    "dev": "nodemon --exec \"father build\"",
+    "dev": "nodemon --exec \"father-build\"",
     "build": "father-build",
     "test": "jest",
     "release:preview": "np --no-publish --preview",

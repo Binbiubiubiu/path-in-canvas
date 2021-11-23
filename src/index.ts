@@ -1,9 +1,8 @@
 const ACTION = "MLHVCSQTZ";
 const ACTION_REGEXP = new RegExp(
-  `[${ACTION}]([\\s,]*\\-?\\d+(\.\\d)?[\\s,]*)*`,
+  `[${ACTION}]([\\s,]*\\-?\\d+(\\.\\d)?[\\s,]*)*`,
   "g"
 );
-
 let debugFlag = false; 
 
 /**
@@ -78,38 +77,47 @@ export function drawPath(
     switch (action) {
       case "M":
         ctx.moveTo(a, b);
+        debug(`ctx.moveTo(${a}, ${b})`);
         lastPoint = [a, b];
         continue;
       case "L":
-        ctx.moveTo(a, b);
+        ctx.lineTo(a, b);
+        debug(`ctx.lineTo(${a}, ${b})`);
         lastPoint = [a, b];
         continue;
       case "H":
-        ctx.moveTo(a, lb);
+        ctx.lineTo(a, lb);
+        debug(`ctx.lineTo(${a}, ${lb})`);
         lastPoint = [a, lb];
         continue;
       case "V":
-        ctx.moveTo(la, b);
+        ctx.lineTo(la, b);
+        debug(`ctx.lineTo(${la}, ${lb})`);
         lastPoint = [la, b];
         continue;
       case "C":
         ctx.bezierCurveTo(a, b, c, d, e, f);
+        debug(`ctx.bezierCurveTo(${a}, ${b}, ${c}, ${d}, ${e}, ${f})`);
         lastPoint = [e, f];
         continue;
       case "S":
         ctx.bezierCurveTo(la, lb, a, b, c, d);
+        debug(`ctx.bezierCurveTo(${la}, ${lb}, ${a}, ${b}, ${c}, ${d})`);
         lastPoint = [c, d];
         continue;
       case "Q":
         ctx.quadraticCurveTo(a, b, c, d);
+        debug(`ctx.quadraticCurveTo(${a}, ${b}, ${c}, ${d})`);
         lastPoint = [c, d];
         continue;
       case "T":
         ctx.quadraticCurveTo(la, lb, a, b);
+        debug(`ctx.quadraticCurveTo(${la}, ${lb}, ${a}, ${b})`);
         lastPoint = [a, b];
         continue;
       case "Z":
         ctx.closePath();
+        debug('ctx.closePath()');
         break;
     }
   }
